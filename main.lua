@@ -21,7 +21,6 @@ end
 
 
 function update_planete(p,dt)
-	local test = vector(0,0)
 	local speed = p.speed
 	local nb = #univ
 	local i = 1
@@ -68,7 +67,7 @@ function love.load()
 	math.randomseed(0)
 
 	for i=1,1000 do
-		add_planet(4,nil,vector(math.random(-100,100),math.random(-100,100)))
+		add_planet(4,nil,vector(math.random(-100,100),math.random(-100,100)),nil)
 	end
 end
 
