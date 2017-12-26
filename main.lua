@@ -1,9 +1,8 @@
 vector = require "lib/vector"
 require "planete"
+local effil = require "effil"
 
 function love.load()
-
-	G = 500
 	texture_name = {
 		"earth.png",
 		"jupiter.png",
@@ -17,12 +16,17 @@ function love.load()
 	for k,v in ipairs(texture_name) do
 		texture_img[k] = love.graphics.newImage("text/"..v)
 	end
-	univ = {}
+	univ = {} --effil.table()
 	math.randomseed(0)
 
 	for i=1,1000 do
-		table.insert(univ, add_planet(4, nil, vector(math.random(-100,100), math.random(-100,100)), nil, false))
+		univ[i] = add_planet(5, nil, {math.random(-200,200), math.random(-200,200)}, nil, false)
 	end
+
+	-- univ[1] = add_planet(500, {200,200})
+	-- univ[2] = add_planet(500, {400,200})
+
+	print(univ)
 	-- add_planet(5000,  vector(500, 500), vector(0, 200000), nil, true)
 	-- add_planet(5000,  vector(1000, 500), vector(0, -200000), nil, true)
 
@@ -39,8 +43,9 @@ function love.load()
 end
 
 function love.draw()
-	for k,v in ipairs(univ) do
-		draw_planete(v)
+	local len = #univ
+	for i=1,len do
+		draw_planete(univ[i])
 	end
 	love.graphics.setColor(255,255,255)
 	love.graphics.print("Entity: "..#univ, 10, 10)
@@ -48,12 +53,22 @@ function love.draw()
 end
 
 function love.update(dt)
-	for k,v in ipairs(univ) do
-		update_planete_force(v, univ, 0.01)
+	for i=1,#univ do
+		--local thr = effil.thread(update_planete_force)(i , univ, 0.01)
+		--thr:wait()
+		update_planete_force(i, univ, 0.0166666)
 	end
+
 	for k,v in ipairs(univ) do
-		update_planete_colision(v, univ)
+		update_planete_colision(k, univ)
 	end
+
+	-- for k,v in ipairs(univ) do
+	-- 	--update_planete_force(v, univ, 0.01)
+	-- end
+	-- for k,v in ipairs(univ) do
+	-- 	update_planete_colision(v, univ)
+	-- end
 end
 
 function love.keypressed(key, isrepeat)
