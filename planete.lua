@@ -1,4 +1,4 @@
-	local G = 1
+	local G = 100
 
 function add_planet(mass, pos, speed, color, trace, interval)
 	p = {
@@ -40,8 +40,9 @@ function update_planete_force(nb,univ,dt)
 		if k ~= nb then
 			local dist_x = pos_x - v.pos[1]
 			local dist_y = pos_y - v.pos[2]
-			local len  = math.sqrt(dist_x * dist_x + dist_y * dist_y)
-			local f = G * ((mass * v.mass) / len)
+			local len2 = dist_x * dist_x + dist_y * dist_y
+			local len  = math.sqrt(len2)
+			local f = G * ((mass * v.mass) / len2)
 			speed_x = speed_x - ((dist_x / len) * f * dt)
 			speed_y = speed_y - ((dist_y / len) * f * dt)
 		end

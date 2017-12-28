@@ -20,7 +20,7 @@ function love.load()
 	math.randomseed(0)
 
 	for i=1,1000 do
-		univ[i] = add_planet(5, nil, {math.random(-200,200), math.random(-200,200)}, nil, false)
+		univ[i] = add_planet(5, nil, {math.random(-100,100), math.random(-100,100)}, nil, false)
 	end
 
 	-- univ[1] = add_planet(500, {200,200})
