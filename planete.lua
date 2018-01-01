@@ -5,8 +5,8 @@ function add_planet(mass, pos, speed, color)
 	p = {
 		mass = mass,
 		radius = math.sqrt(mass/math.pi),
-		pos = pos or {math.random(-500, 2000), math.random(-500, 1500)},
-		color = color or {math.random(0,255), math.random(0,255), math.random(0,255)},
+		pos = pos or {math.random(0, 1000), math.random(0, 1000)},
+		color = color or {math.random(180,255), math.random(180,255), math.random(180,255)},
 		speed = speed or {0,0},
 		text = math.random(1,7)
 	}
