@@ -1,5 +1,5 @@
-	local G = 100
-	local sqrt = math.sqrt
+local G = 100
+local sqrt = math.sqrt
 
 function add_planet(mass, pos, speed, color)
 	return {
