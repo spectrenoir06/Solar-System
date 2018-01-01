@@ -48,8 +48,7 @@ function update_planete_colision(univ)
 		while j <= univ_size do
 			local v = univ[j]
 			local sum_radius = radius + v.radius
-			local dx = pos_x - v.pos[1]
-			local dy = pos_y - v.pos[2]
+			local dx, dy = pos_x - v.pos[1], pos_y - v.pos[2]
 			if (dx*dx+dy*dy) < (sum_radius * sum_radius) then
 				local speed = {
 					speed_x + v.speed[1],
@@ -77,9 +76,6 @@ end
 
 function draw_planete(p)
 	love.graphics.setColor(p.color[1],p.color[2],p.color[3])
-	if p.trace then
-		love.graphics.line(p.trace)
-	end
 	local img = texture_img[p.text]
 	love.graphics.draw(img, p.pos[1] - p.radius, p.pos[2] - p.radius, 0, p.radius/(img:getWidth()/2), p.radius/(img:getHeight()/2))
 	-- love.graphics.circle("line", p.pos.x , p.pos.y, 2)
