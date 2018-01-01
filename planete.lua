@@ -2,7 +2,7 @@
 	local sqrt = math.sqrt
 
 function add_planet(mass, pos, speed, color)
-	p = {
+	return {
 		mass = mass,
 		radius = math.sqrt(mass/math.pi),
 		pos = pos or {math.random(0, 1000), math.random(0, 1000)},
@@ -10,7 +10,6 @@ function add_planet(mass, pos, speed, color)
 		speed = speed or {0,0},
 		text = math.random(1,7)
 	}
-	return p
 end
 
 function update_planete_force(univ, dt)
