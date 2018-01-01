@@ -2,7 +2,7 @@ require "planete"
 
 function love.load()
 	univ = {}
-	seed = os.time()
+	seed = 0 -- os.time()
 
 	texture_img = {}
 	for k,v in ipairs(love.filesystem.getDirectoryItems("text/")) do
