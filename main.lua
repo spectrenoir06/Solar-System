@@ -33,7 +33,7 @@ function love.draw()
 	end
 	love.graphics.setColor(255,255,255)
 	love.graphics.print("Entity: "..#univ, 10, 10)
-	love.graphics.print("fps: "..love.timer.getFPS().."  Vsync: "..(flags.vsync and "On" or "Off	"), 10, 35)
+	love.graphics.print("fps: "..love.timer.getFPS().."  Vsync: "..(flags.vsync and "On" or "Off"), 10, 35)
 	love.graphics.print("Seed: "..seed, 10, 60)
 end
 
