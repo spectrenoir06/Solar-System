@@ -39,8 +39,24 @@ function love.draw()
 
 	love.graphics.setColor(255,255,255)
 	love.graphics.print("Entity: "..#univ, 10, 10)
-	love.graphics.print("fps: "..love.timer.getFPS().."  Vsync: "..(flags.vsync and "On" or "Off"), 10, 35)
+	love.graphics.print("FPS:	", 10, 35)
+	if love.timer.getFPS() < 60 then
+		love.graphics.setColor(255, 0, 0, 255)
+	elseif love.timer.getFPS() == 60 then
+		love.graphics.setColor(0, 255, 0, 255)
+	else
+		love.graphics.setColor(255, 255, 0, 255)
+	end
+	love.graphics.print(love.timer.getFPS(), 42, 35)
+	love.graphics.setColor(255,255,255)
 	love.graphics.print("Seed: "..seed, 10, 60)
+	love.graphics.print("Vsync: "..(flags.vsync and "On" or "Off"), 10, 85)
+	love.graphics.print([[
+The arrow keys move the camera
+You can zoom in and out using the mouse wheel
+Press 'R' to reset the camera position an zoom
+Press the space bar to desactivate Vsync
+]],10, 110)
 end
 
 function love.update(dt)
@@ -70,8 +86,6 @@ function love.keypressed(key, isrepeat)
 end
 
 function love.mousepressed(x, y, button, istouch)
-	flags.vsync = not flags.vsync
-	love.window.setMode( width, height, flags)
 end
 
 function love.wheelmoved(x, y)
@@ -80,7 +94,7 @@ function love.wheelmoved(x, y)
 		local mouse_y = my - window.translate.y
 		local lastzoom = window.zoom
 		window.zoom = (window.zoom + (y / 10))
-		window.zoom = (window.zoom < 0) and 0 or window.zoom
+		window.zoom = (window.zoom < 0.1) and 0.1 or window.zoom
 		local newx = mouse_x * (window.zoom/lastzoom)
 		local newy = mouse_y * (window.zoom/lastzoom)
 		window.translate.x = window.translate.x + (mouse_x-newx)
